@@ -13,11 +13,31 @@
 FastApi, Postgresql, SQLAlchemy, Yandex Functions
 
 
+##Процесс сборки
+Зарегистироваться в Yandex registry
+```shell
+docker login --username oauth --password <YOUR_YANDEX_OATH_TOKEN> cr.yandex
+```
+
+Билд FastAPI приложения
+```shell
+cd app/
+docker build -t yandex_api .
+```
+Добавить тэг
+```shell
+docker tag yandex_api cr.yandex/<YOUR_REGISTRY_ID>/yandex_api:latest
+```
+Опубликовать образ
+```shell
+docker push cr.yandex/<YOUR_REGISTRY_ID>/yandex_api
+```
+
 ##Работа с приложением
 1) Зарегестрировать пользователя через POST запрос на /user/signup
 2) Получить токен через /user/login
-3) Post запрос на корневой адрес получает курсы валют из API на дату, указанную в body, и сохраняет их в бд
-4) Get запрос на корневой адрес получает данные из бд на указанную в параметре date дату
+3) Post запрос на /connect сохраняет в бд курсы на указанную дату
+4) Get запрос на /connect получает данные из бд на указанную в параметре date дату
 
 ##Переменные окружения
 ####SQLALCHEMY_URL - урл дляподключения к бд

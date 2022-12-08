@@ -11,19 +11,14 @@ from services.currency_services import (
     get_currency_rate_for_date,
 )
 
-router = APIRouter()
+router = APIRouter(prefix="/currency", tags=["currency"])
 
 
-@router.post(
-    "/",
-    status_code=http.HTTPStatus.CREATED,
-    dependencies=[Depends(JWTBearer())],
-    tags=["currency"],
-)
+@router.post("/", status_code=http.HTTPStatus.CREATED, dependencies=[Depends(JWTBearer())])
 def currency_for_date(date: datetime.date = Body(..., embed=True)):
     return add_currency_for_date(date)
 
 
-@router.get("/", dependencies=[Depends(JWTBearer())], tags=["currency"])
+@router.get("/", dependencies=[Depends(JWTBearer())])
 def currency_for_date(date: datetime.date, db: Session = Depends(get_db)):
     return get_currency_rate_for_date(date, db)

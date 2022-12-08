@@ -1,14 +1,12 @@
 import uvicorn
 from fastapi import FastAPI
 
-from routers.currency import router as currency_router
-from routers.users import router as user_router
+from routers import api_router
 
 
 def create_app():
     app_ = FastAPI()
-    app_.include_router(currency_router)
-    app_.include_router(user_router)
+    app_.include_router(api_router)
     return app_
 
 

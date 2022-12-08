@@ -43,4 +43,5 @@ def handler(event, context):
                 rate.dict(),
             )
         connection.commit()
+    connection.close()
     return {"status": 200, "data": currency_rates}

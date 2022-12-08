@@ -31,11 +31,7 @@ class JWTBearer(HTTPBearer):
     @staticmethod
     def verify_jwt(jwtoken: str) -> bool:
         is_token_valid: bool = False
-
-        try:
-            payload = decode_jwt(jwtoken)
-        except jwt.exceptions.DecodeError:
-            payload = None
+        payload = decode_jwt(jwtoken)
         if payload:
             is_token_valid = True
         return is_token_valid

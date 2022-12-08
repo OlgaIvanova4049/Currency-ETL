@@ -7,7 +7,7 @@ from orm.models.currency import CurrencyModel
 from orm.schemas.currency import Currency
 
 
-def add_currency_for_date(date):
+def add_currency_for_date(date) -> str:
     result = requests.post(
         url=settings.FUNCTION_URL,
         data={"date": date},
@@ -16,7 +16,7 @@ def add_currency_for_date(date):
     return result.json()
 
 
-def get_currency_rate_for_date(date, db=Depends()):
+def get_currency_rate_for_date(date, db=Depends()) -> list[Currency]:
     query = select(CurrencyModel).filter(CurrencyModel.date == date)
     result = db.execute(query)
     currencies = result.scalars().all()

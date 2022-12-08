@@ -44,7 +44,3 @@ def handler(event, context):
             )
         connection.commit()
     return {"status": 200, "data": currency_rates}
-
-
-# print(handler({"body": {"date": "2022-11-18"}}, "context"))
-print(handler({"body": None}, "context"))

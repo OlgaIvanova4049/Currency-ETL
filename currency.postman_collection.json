@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "9e6abfd0-5673-4c3a-9567-a94e08f01f51",
+		"name": "currency",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "23832549"
+	},
+	"item": [
+		{
+			"name": "Currency",
+			"item": [
+				{
+					"name": "Add currency rate for date",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"date\": \"2022-12-02\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/currency"
+					},
+					"response": []
+				},
+				{
+					"name": "Get currency",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/currency?date=2022-12-07",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"currency"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2022-12-07"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "User sign up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"string7\",\n  \"password\": \"string\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/user/signup"
+					},
+					"response": []
+				},
+				{
+					"name": "User login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"testuser\",\n  \"password\": \"testuser\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/user/login"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
